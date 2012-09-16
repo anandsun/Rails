@@ -3,3 +3,12 @@
     margin-right: auto;
     text-align: center;
 }
+
+.narrow {
+    width: 60em;
+}
+
+textarea {
+    width: 60em;
+    height: 20em;
+}
