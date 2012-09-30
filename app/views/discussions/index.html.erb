@@ -1,0 +1,29 @@
+<h1>Listing discussions</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Topic</th>
+    <th>Message</th>
+    <th>T</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @discussions.each do |discussion| %>
+  <tr>
+    <td><%= discussion.user %></td>
+    <td><%= discussion.topic %></td>
+    <td><%= discussion.message %></td>
+    <td><%= discussion.t %></td>
+    <td><%= link_to 'Show', discussion %></td>
+    <td><%= link_to 'Edit', edit_discussion_path(discussion) %></td>
+    <td><%= link_to 'Destroy', discussion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Discussion', new_discussion_path %>
