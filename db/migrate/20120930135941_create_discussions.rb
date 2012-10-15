@@ -4,7 +4,6 @@ class CreateDiscussions < ActiveRecord::Migration
       t.integer :user
       t.string :topic
       t.string :message
-      t.timestamp :t
 
       t.timestamps
     end

@@ -11,3 +11,22 @@
  *= require_self
  *= require_tree .
  */
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.narrow {
+    width: 60em;
+}
+
+.thin {
+    margin: 1em;
+    padding: 1em;
+    height: 17em;
+}
+
+.cling {
+    margin-top: 0em;
+}
