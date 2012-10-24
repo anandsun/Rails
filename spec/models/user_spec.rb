@@ -2,59 +2,74 @@ require 'spec_helper'
 
 describe User do
   it "requires a name" do
-    subject.password = "f0O"
-    subject.email = "bar@gmail.com"
+    subject.password = "f0Obar"
+    subject.email = "baz@gmail.com"
     
     subject.should_not be_valid
-    
-    subject.name = "baz"
-    
+
+    subject.name = "bar"
+
     subject.should be_valid
   end
+
   it "requires an email" do
     subject.name = "foo"
-    subject.password = "b@R"
+    subject.password = "f0Obar"
     
     subject.should_not be_valid
-    
+
     subject.email = "baz@gmail.com"
-    
+
     subject.should be_valid
   end
+
   it "requires a password" do
     subject.name = "foo"
-    subject.email = "bar@gmail.com"
-    
-    subject.should_not be_valid
-    
-    subject.password = "b@Z"
-    
-    subject.should be_valid
-  end
-  it "requires a valid email" do
-    subject.name = "foo"
-    subject.email = "bar"
-    subject.password = "b@Z"
-    
-    subject.should_not be_valid
-    
-    subject.email = "bar@gmail.com"
-    
-    subject.should be_valid
-  end
-  it "requires a strong password" do
-    subject.name = "foo"
-    subject.password = "bar"
     subject.email = "baz@gmail.com"
     
     subject.should_not be_valid
-    
-    subject.password = "barroombrawl"
-    
-    subject.should be_valid
-    
-    subject.password = "b@R"
-    
+
+    subject.password = "f0Obar"
+
     subject.should be_valid
   end
+
+  it "requires valid email" do
+    subject.name = "foo"
+    subject.email = "bar"
+    subject.password = "f0Obar"
+ 
+    subject.should_not be_valid
+
+    subject.email = "baz@gmail.com"
+
+    subject.should be_valid
+  end
+
+  it "requires a valid password" do
+    subject.name = "foo"
+    subject.email = "bar@gmail.com"
+    subject.password = "baz"
+ 
+    subject.should_not be_valid
+
+    subject.password = "f0Obar"
+
+    subject.should be_valid
+  end
+
+  it "requires unique name" do
+    User.create(:name => "foo", :email => "baz1@gmail.com", :password => "f0Obar")
+    subject = User.new(:name => "foo", :email => "baz2@gmail.com", :password => "f0Obar")
+    subject.should_not be_valid
+    subject.errors[:name].should include("has already been taken")
+  end
+
+  it "requires unique email" do
+    User.create(:name => "foo1", :email => "baz@gmail.com", :password => "f0Obar")
+    subject = User.new(:name => "foo2", :email => "baz@gmail.com", :password => "f0Obar")
+    subject.should_not be_valid
+    subject.errors[:email].should include("has already been taken")
+  end
+
 end

@@ -11,22 +11,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121023223510) do
+ActiveRecord::Schema.define(:version => 20121024023558) do
 
   create_table "discussions", :force => true do |t|
-    t.integer  "user"
+    t.integer  "user_id"
     t.string   "topic"
     t.string   "message"
-    t.datetime "t"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "searches", :force => true do |t|
-    t.string   "user"
+    t.integer  "user_id"
     t.string   "keywords"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.boolean  "searchTopic"
+    t.boolean  "searchMessage"
+    t.boolean  "searchUser"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "users", :force => true do |t|
