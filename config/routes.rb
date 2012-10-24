@@ -1,4 +1,6 @@
 Demo::Application.routes.draw do
+  resources :users
+
   resources :searches
 
   resources :discussions

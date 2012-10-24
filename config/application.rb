@@ -58,5 +58,12 @@ module Demo
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    #Avoid unnecessary rspec specs
+    config.generators do |g|
+      g.controller_specs false
+      g.view_specs false
+      g.helper_specs false
+    end
   end
 end

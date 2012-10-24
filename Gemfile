@@ -18,6 +18,11 @@ group :assets do
   gem 'twitter-bootstrap-rails', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+
+end
+
+group :development, :test do
+      gem 'rspec-rails'
 end
 
 group :development do
