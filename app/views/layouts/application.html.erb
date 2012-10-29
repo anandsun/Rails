@@ -10,9 +10,27 @@
   <div class = "container">
     <div class = "thin center well">
       <h2 class = "cling">DARK</h2>
-      <img src = "dark.jpg" />
+      <%= image_tag "dark.jpg" %>
       <h4>A forum for the discussion of nonexistent things</h4>
     </div>
+
+    <% if alert%>
+    <div class="alertalert-error">
+      <%=alert%>
+    </div>
+    <% end %>
+
+    <% if notice %>
+    <div class="noticenotice-error">
+      <%=notice%>
+    </div>
+    <% end %>
+
+    <% if user_signed_in? %>
+    <%= link_to 'Logout',
+         destroy_user_session_path,
+         method: :delete %>
+    <% end %>   
     
     <%= yield %>
 

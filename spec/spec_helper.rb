@@ -8,6 +8,14 @@ require 'rspec/autorun'
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
+# Authenticate test user
+def sign_in
+  visit new_user_session_path
+  fill_in 'Email', with: 'anchorflow@gmail.com'
+  fill_in 'Password', with: 'test1234'
+  click_button
+end
+
 RSpec.configure do |config|
   # ## Mock Framework
   #

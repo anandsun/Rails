@@ -1,6 +1,6 @@
 # Be sure to restart your server when you modify this file.
 
-Demo::Application.config.session_store :cookie_store, key: '_demo_session'
+Dark::Application.config.session_store :cookie_store, key: '_dark_session'
 
 # Use the database for sessions instead of the cookie-based default,
 # which shouldn't be used to store highly confidential information
