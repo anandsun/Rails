@@ -7,7 +7,7 @@ Dark::Application.routes.draw do
 
   resources :discussions
 
-  root :to => "home#index"
+  root :to => "users#sign_up"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
