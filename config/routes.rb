@@ -1,11 +1,17 @@
 Dark::Application.routes.draw do
+  resources :posts
+
   devise_for :users
 
   resources :users
 
   resources :searches
 
-  resources :discussions
+  resources :discussions do
+    collection do
+      get "recent"
+    end
+  end
 
   root :to => "home#index"
 

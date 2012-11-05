@@ -5,13 +5,11 @@
 
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:user) %>:</strong></dt>
-  <dd><%= @discussion.user %></dd>
+  <dd><%= @discussion.user.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:topic) %>:</strong></dt>
   <dd><%= @discussion.topic %></dd>
   <dt><strong><%= model_class.human_attribute_name(:message) %>:</strong></dt>
   <dd><%= @discussion.message %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:t) %>:</strong></dt>
-  <dd><%= @discussion.t %></dd>
 </dl>
 
 <div class="form-actions">

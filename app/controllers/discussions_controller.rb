@@ -10,6 +10,14 @@ class DiscussionsController < ApplicationController
     end
   end
 
+  def recent
+    @discussions = Discussion.recent
+
+    respond_to do |format|
+      format.html
+    end
+  end
+
   # GET /discussions/1
   # GET /discussions/1.json
   def show
@@ -41,6 +49,10 @@ class DiscussionsController < ApplicationController
   # POST /discussions.json
   def create
     @discussion = Discussion.new(params[:discussion])
+    
+    if user_signed_in?
+      @discussion.user = current_user
+    end
 
     respond_to do |format|
       if @discussion.save

@@ -16,8 +16,9 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :email, :password, 
   :password_confirmation, :remember_me
-  has_many :discussions
+  has_many :discussions, :through => :posts
   has_many :searches
+  has_many :posts
   validates :name, :presence => true, :uniqueness => true
   validates :email, :presence => true, :uniqueness => true, :format => { :with => /\A.+@.+\z/, :message => "email address must contain '@'" }
   validates :password, :presence => true
