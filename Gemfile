@@ -32,6 +32,10 @@ group :development do
   gem 'sqlite3'
 end
 
+group :development do
+  gem 'letter_opener', :git => 'https://github.com/ryanb/letter_opener'
+end
+
 group :production do
   gem 'pg'
 end

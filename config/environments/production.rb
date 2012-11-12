@@ -2,7 +2,19 @@ Dark::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # For devise
-  config.action_mailer.default_url_options = {:host => 'rubydark.herokuapp.com'}
+  config.action_mailer.default_url_options = {
+    :host => 'rubydark.herokuapp.com'
+  }
+
+  # For sendgrid
+  config.action_mailer.smtp_settings = {
+    :address=>'smtp.sendgrid.net',
+    :port=>'587',
+    :authentication=>:plain,
+    :user_name=>ENV['SENDGRID_USERNAME'],
+    :password=>ENV['SENDGRID_PASSWORD'],
+    :domain=>'heroku.com'
+  }
 
   # Code is not reloaded between requests
   config.cache_classes = true
