@@ -2,23 +2,22 @@
 <script type = "text/javascript">
     $(function () {
 	$('#info').click(function() {
-	    $('#notice').slideDown();
-	});
-	$('#hide').click(function() {
-	    $('#notice').slideUp();
+	    var $msg = $('#notice');
+	    if ($msg.is(':hidden'))
+		$msg.slideDown();
+	    else
+		$msg.slideUp();
 	});
     });
 </script>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
-  <button class = "btn btn-small" type = "button" id = "info">
-    <i class = "icon-warning-sign"></i>
+  <button class="btn btn-small" type="button" id="info">
+    <i class="icon-warning-sign"></i>
   </button>
-  <br />
-  <div id = "notice" class = "well" style = "display:none">
+  <div id="notice" class="well" style="display:none">
     <strong>
-      <p class = "text-warning">The ability to make new posts and view all posts through a separate interface will be removed once posts are fully integrated into the discussions.</p>
-      <button class = "btn" type = "button" id = "hide">Hide message</button>
+      <p class="text-warning">The ability to make new posts and view all posts through a separate interface will be removed once posts are fully integrated into the discussions.</p>
     </strong>
   </div>
 </div>
