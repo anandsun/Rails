@@ -1,13 +1,13 @@
 Dark::Application.routes.draw do
-  resources :posts
+  root :to => 'discussions#index'
 
   devise_for :users
 
   resources :users
 
-  resources :searches
-
   resources :discussions do
+    resources :posts
+
     collection do
       get "recent"
     end

@@ -1,8 +1,12 @@
 class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
+
+  before_filter :authenticate_user!, :only => [:create, :update, :edit, :destroy]
+
   def index
-    @posts = Post.all
+  @discussion = Discussion.find(params[:discussion_id])
+  @posts = @discussion.posts
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +17,8 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
-    @post = Post.find(params[:id])
+  @discussion = Discussion.find(params[:discussion_id])
+    @post = @discussion.posts.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,6 +29,7 @@ class PostsController < ApplicationController
   # GET /posts/new
   # GET /posts/new.json
   def new
+    @discussion = Discussion.find(params[:discussion_id])
     @post = Post.new
 
     respond_to do |format|
@@ -34,35 +40,37 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
-    @post = Post.find(params[:id])
+    @discussion = Discussion.find(params[:discussion_id])
+    @post = @discussion.posts.find(params[:id])
   end
 
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(params[:post])
+    @discussion = Discussion.find(params[:discussion_id])
+    @post = @discussion.posts.build(params[:post])
  
    if user_signed_in?
-      @post.user = current_user
-    end
-
+     @post.user = current_user
+   end
+    
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.html { redirect_to @discussion, notice: 'Post was successfully created.' }
         format.json { render json: @post, status: :created, location: @post }
-
+        
         Notifications.new_post(@post).deliver
       else
         format.html { render action: "new" }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
-    end
+    end 
   end
 
   # PUT /posts/1
   # PUT /posts/1.json
   def update
-    @post = Post.find(params[:id])
+    @post = @posts.find(params[:id])
 
     respond_to do |format|
       if @post.update_attributes(params[:post])

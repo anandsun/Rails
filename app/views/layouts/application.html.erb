@@ -8,32 +8,63 @@
 </head>
 <body>
   <div class = "container">
-    <div class = "thin center well">
-      <h2 class = "cling">DARK</h2>
-      <%= image_tag "dark.jpg" %>
-      <h4>A forum for the discussion of nonexistent things</h4>
-    </div>
+    <table class = "center">
+      <tr>
+	<td>
+	  <div class = "thin center well">
+	    <h2 class = "cling">DARK</h2>
+	    <%= image_tag "dark.jpg" %>
+	    <h4>A forum for the discussion of nonexistent things</h4>
+	  </div>
+	</td>
+	<td>
+	  <div>
+	    <%= button_to "Threads", 
+		'/', 
+		:class => 'btn btn-primary' %>
+	    
+	    <% if user_signed_in? %>
+	    <%= button_to 'New Thread',
+		new_discussion_path,
+		:class => 'btn btn-success' %>
+	    
+	    <%= link_to 'Log Out',
+		destroy_user_session_path,
+		method: :delete,
+		:class => 'btn btn-danger' %>
+	    
+	    <% else %>
+	    <%= button_to 'Log In',
+		new_user_session_path,
+		:class => 'btn btn-success' %>
+	    <% end %>   
+	  </div>
+	</td>
+      </tr>
+      <tr>
+      </tr>
+    </table>
 
-    <% if alert%>
-    <div class="alertalert-error">
-      <%=alert%>
-    </div>
-    <% end %>
+    <table class = "center">
+      <tr>
+	<td>
+	  <% if alert%>
+	  <div class="alert alert-error">
+	    <%=alert%>
+	  </div>
+	  <% end %>
+	  
+	  <% if notice %>
+	  <div class="alert alert-info">
+	    <%=notice%>
+	  </div>
+	  <% end %>
+	</td>
+      </tr>
+    </table>
 
-    <% if notice %>
-    <div class="noticenotice-error">
-      <%=notice%>
-    </div>
-    <% end %>
-
-    <% if user_signed_in? %>
-    <%= link_to 'Logout',
-         destroy_user_session_path,
-         method: :delete %>
-    <% end %>   
-    
     <%= yield %>
-
+    
   </div>
 </body>
 </html>

@@ -1,6 +1,7 @@
 class DiscussionsController < ApplicationController
   # GET /discussions
   # GET /discussions.json
+  before_filter :authenticate_user!, :only => [:create, :update, :edit, :destroy]
   def index
     @discussions = Discussion.all
 
