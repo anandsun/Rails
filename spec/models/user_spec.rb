@@ -26,7 +26,7 @@ describe User do
   it "requires a password" do
     subject.name = "foo"
     subject.email = "baz@gmail.com"
-    
+
     subject.should_not be_valid
 
     subject.password = "f0Obar"

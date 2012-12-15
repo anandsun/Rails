@@ -19,12 +19,12 @@
 	</td>
 	<td>
 	  <div>
-	    <%= button_to "Threads", 
+	    <%= button_to "Discussions", 
 		'/', 
 		:class => 'btn btn-primary' %>
 	    
 	    <% if user_signed_in? %>
-	    <%= button_to 'New Thread',
+	    <%= button_to 'New Discussion',
 		new_discussion_path,
 		:class => 'btn btn-success' %>
 	    

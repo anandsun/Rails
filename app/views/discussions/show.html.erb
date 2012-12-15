@@ -30,11 +30,18 @@
 
       </div>
       <% end %>
-      
-      <div class="form-actions">
-	<%= link_to t('.back', :default => t("helpers.links.back")),
-	discussions_path, :class => 'btn'  %>
-	<%= link_to "New Post", new_discussion_post_path(@discussion), :class => 'btn btn-primary' %>
+     
+      <div class = "form-actions">
+	<table class = "center">
+	  <tr>
+	    <td>
+	      <%= button_to "Back", recent_discussions_path, :method => :get, :class => 'btn'  %>
+	    </td>
+	    <td>
+	      <%= button_to "New Post", new_discussion_post_path(@discussion), :method => :get, :class => 'btn btn-primary' %>
+	    </td>
+	  </tr>
+	</table>
       </div>
     </td>
   </tr>

@@ -20,7 +20,6 @@ class User < ActiveRecord::Base
   has_many :searches
   has_many :posts
   validates :name, :presence => true, :uniqueness => true
-  validates :email, :presence => true, :uniqueness => true, :format => { :with => /\A.+@.+\z/, :message => "email address must contain '@'" }
-  validates :password, :presence => true
+  validates :email, :uniqueness => true, :format => { :with => /\A.+@.+\z/, :message => "address must contain '@'" }
   validates :password, :strongPassword => true
 end

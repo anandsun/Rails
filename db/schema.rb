@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121105051722) do
+ActiveRecord::Schema.define(:version => 20121215013149) do
 
   create_table "discussions", :force => true do |t|
     t.integer  "user_id"
@@ -25,16 +25,6 @@ ActiveRecord::Schema.define(:version => 20121105051722) do
     t.integer  "discussion_id"
     t.integer  "user_id"
     t.string   "message"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-  end
-
-  create_table "searches", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "keywords"
-    t.boolean  "searchTopic"
-    t.boolean  "searchMessage"
-    t.boolean  "searchUser"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
@@ -54,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20121105051722) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.boolean  "admin"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -1,5 +1,5 @@
 Dark::Application.routes.draw do
-  root :to => 'discussions#index'
+  root :to => 'discussions#recent'
 
   devise_for :users
 
@@ -10,10 +10,10 @@ Dark::Application.routes.draw do
 
     collection do
       get "recent"
+      get "popular"
+      get "mine"
     end
   end
-
-  root :to => "home#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -57,7 +57,7 @@ Dark::Application.routes.draw do
 
   # Sample resource route within a namespace:
   #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
+  #     # Directs /admin/products/* to Admin:ProductsController
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end

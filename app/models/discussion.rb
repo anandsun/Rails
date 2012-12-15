@@ -3,5 +3,9 @@ class Discussion < ActiveRecord::Base
   belongs_to :user
   has_many :users, :through => :posts
   has_many :posts
-  scope :recent, where("created_at > ?", 30.days.ago) 
+  scope :created_by, lambda { |user|
+    where("user_id = ?", user.id)
+  }
+  validates :topic, :presence => true, :length => { :minimum => 5 }
+  validates :message, :presence => true, :length => { :minimum => 5 }
 end

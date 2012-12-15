@@ -7,8 +7,8 @@
 <table class = "center">
   <tr>
     <td>
-      <%= button_to "Recent", recent_discussions_path, :method => :get, :class => 'btn btn-inverse' %>
-      <%= button_to "Popular", popular_discussions_path, :method => :get, :class => 'btn' %>
+      <%= button_to "Recent", recent_discussions_path, :method => :get, :class => 'btn' %>
+      <%= button_to "Popular", popular_discussions_path, :method => :get, :class => 'btn btn-inverse' %>
       <% if user_signed_in? %>
       <% button_to "Mine", my_discussions_path, :method => :get, :class => 'btn' %> 
       <% end %>

@@ -1,8 +1,40 @@
 <%- model_class = Discussion -%>
+
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
+
+<%-# Conditionally colored sort buttons -%> 
+<table class = "center">
+  <tr>
+    <td>
+      <% if params[:action] == "recent" %>
+      <%= button_to "Recent", recent_discussions_path, :method => :get, :class => 'btn btn-inverse' %>
+      <% else %>
+      <%= button_to "Recent", recent_discussions_path, :method => :get, :class => 'btn' %>
+      <% end %>
+    </td>
+    <td>
+      <% if params[:action] == "popular" %>
+      <%= button_to "Popular", popular_discussions_path, :method => :get, :class => 'btn btn-inverse' %>
+      <% else %>
+      <%= button_to "Popular", popular_discussions_path, :method => :get, :class => 'btn' %>
+      <% end %>
+    </td>
+    <% if user_signed_in? %>
+    <td>
+      <% if params[:action] == "mine" %>
+      <%= button_to "Mine", mine_discussions_path, :method => :get, :class => 'btn btn-inverse' %>
+      <% else %>
+      <%= button_to "Mine", mine_discussions_path, :method => :get, :class => 'btn' %>
+      <% end %>
+    </td>
+      <% end %>
+  </tr>
+</table>
+
 <table class="table table-striped">
+
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:topic) %></th>
@@ -10,13 +42,15 @@
       <th><%= model_class.human_attribute_name(:created_at) %></th>
     </tr>
   </thead>
+
   <tbody>
     <% @discussions.each do |discussion| %>
       <tr>
-	<td><%= link_to discussion.topic, discussion, :class => 'btn btn-link' %></td>
+	<td><%= button_to discussion.topic, discussion, :method => :get, :class => 'btn btn-link' %></td>
         <td><%= discussion.user.name %></td>
-        <td><%=l discussion.created_at %></td>
+        <td><%= time_ago_in_words(discussion.created_at) %></td>
       </tr>
     <% end %>
   </tbody>
+
 </table>

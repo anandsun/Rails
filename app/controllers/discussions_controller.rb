@@ -2,21 +2,34 @@ class DiscussionsController < ApplicationController
   # GET /discussions
   # GET /discussions.json
   before_filter :authenticate_user!, :only => [:create, :update, :edit, :destroy]
+
   def index
     @discussions = Discussion.all
-
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @discussions }
+      format.html #index.html.erb
+      format.json
     end
   end
 
   def recent
-    @discussions = Discussion.recent
+    @discussions = Discussion.all
+    @discussions.sort! { |a,b| a.created_at <=> b.created_at }
+    render "index"
+  end
 
-    respond_to do |format|
-      format.html
+  def popular
+    @discussions = Discussion.all
+    @discussions.sort! { |a,b| a.posts.count <=> b.posts.count }
+    render "index"
+  end
+
+  def mine
+    if user_signed_in?
+      @discussions = Discussion.created_by(current_user)
+    else
+      @discussions = Discusison.all
     end
+    render "index"
   end
 
   # GET /discussions/1
