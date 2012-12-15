@@ -13,13 +13,13 @@ class DiscussionsController < ApplicationController
 
   def recent
     @discussions = Discussion.all
-    @discussions.sort! { |a,b| a.created_at <=> b.created_at }
+    @discussions.sort! { |a,b| b.created_at <=> a.created_at }
     render "index"
   end
 
   def popular
     @discussions = Discussion.all
-    @discussions.sort! { |a,b| a.posts.count <=> b.posts.count }
+    @discussions.sort! { |a,b| b.posts.count <=> a.posts.count }
     render "index"
   end
 
