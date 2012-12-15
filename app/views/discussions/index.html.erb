@@ -50,7 +50,7 @@
 	  <%= button_to discussion.topic, discussion, :method => :get, :class => 'btn btn-link' %>
 	</td>
         <td><%= discussion.user.name %></td>
-        <td><%= time_ago_in_words(discussion.created_at) %></td>
+        <td><%= time_ago_in_words(discussion.created_at) %> ago</td>
 	<% if current_user.try(:admin?) %>
 	<td>
 	  <%= button_to "Destroy",
