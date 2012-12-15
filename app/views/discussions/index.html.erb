@@ -46,9 +46,21 @@
   <tbody>
     <% @discussions.each do |discussion| %>
       <tr>
-	<td><%= button_to discussion.topic, discussion, :method => :get, :class => 'btn btn-link' %></td>
+	<td>
+	  <%= button_to discussion.topic, discussion, :method => :get, :class => 'btn btn-link' %>
+	</td>
         <td><%= discussion.user.name %></td>
         <td><%= time_ago_in_words(discussion.created_at) %></td>
+	<% if current_user.try(:admin?) %>
+	<td>
+	  <%= button_to "Destroy",
+              discussion_path(discussion),
+              :method => :delete,
+          :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+          :class => 'btn btn-mini btn-danger' %>
+	</td>
+	<% end %>
+
       </tr>
     <% end %>
   </tbody>
